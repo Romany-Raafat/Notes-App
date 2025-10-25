@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Note extends StatelessWidget {
-  const Note({super.key});
+  final Color color;
+  const Note({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class Note extends StatelessWidget {
         width: double.infinity,
         height: 260,
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          color: color,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(

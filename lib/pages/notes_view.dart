@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/note.dart';
+import 'package:notes_app/widgets/notes_list.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -7,6 +8,10 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add, size: 35),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
@@ -22,26 +27,7 @@ class NotesView extends StatelessWidget {
           child: const Text('Notes', style: TextStyle(fontSize: 40)),
         ),
       ),
-      body: ListView(
-        children: [
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-          Note(),
-        ],
-      ),
+      body: NotesList(),
     );
   }
 }
