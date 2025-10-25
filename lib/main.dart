@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/pages/home_page.dart';
 
 void main() {
   runApp(const NotesApp());
@@ -11,10 +12,7 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Flutter Demo Home Page')),
-        body: const Center(child: Text('Hello, Flutter!')),
-      ),
+      home: HomePage()
     );
   }
 }
