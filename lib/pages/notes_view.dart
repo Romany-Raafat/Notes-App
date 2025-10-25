@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/widgets/note.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -21,7 +22,26 @@ class NotesView extends StatelessWidget {
           child: const Text('Notes', style: TextStyle(fontSize: 40)),
         ),
       ),
-      body: const Center(child: Text('Welcome to the Home Page!')),
+      body: ListView(
+        children: [
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+          Note(),
+        ],
+      ),
     );
   }
 }
