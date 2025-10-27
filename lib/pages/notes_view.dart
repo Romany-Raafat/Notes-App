@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:notes_app/widgets/add_note_button.dart';
 import 'package:notes_app/widgets/notes_list.dart';
 
@@ -10,32 +11,32 @@ class NotesView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          showSimpleNotification(
+            const Text('Note Added 📝'),
+            subtitle: const Text('Your note has been added successfully!'),
+            background: Colors.teal,
+            autoDismiss: true,
+            duration: const Duration(seconds: 2),
+            slideDismissDirection: DismissDirection.up,
+          );
+
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              return AddNoteButton();
+              return const AddNoteButton();
             },
           );
         },
-        child: Icon(Icons.add, size: 35),
+        child: const Icon(Icons.add, size: 35),
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, size: 35),
-            onPressed: () {
-              // Action for adding a new note
-            },
-          ),
-        ],
-        title: Padding(
-          padding: const EdgeInsets.only(left: 15.0, top: 15),
-          child: const Text('Notes', style: TextStyle(fontSize: 40)),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 15.0, top: 15),
+          child: Text('Notes', style: TextStyle(fontSize: 40)),
         ),
       ),
-      body: NotesList(),
+      body: const NotesList(),
     );
   }
 }
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:notes_app/pages/notes_view.dart';
 
 void main() {
@@ -8,13 +9,14 @@ void main() {
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(brightness: Brightness.dark),
-      debugShowCheckedModeBanner: false,
-      home: NotesView(),
+    return OverlaySupport.global( // 👈 هنا
+      child: MaterialApp(
+        theme: ThemeData(brightness: Brightness.dark),
+        debugShowCheckedModeBanner: false,
+        home: const NotesView(),
+      ),
     );
   }
 }
