@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
 class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
+  final String title;
+  final String body;
+  const EditNoteView({super.key, required this.title, required this.body});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Note'),
-      ),
-      body: const Center(
-        child: Text('Edit Note View'),
-      ),
+      appBar: AppBar(title: Text(title)),
+      body: Center(child: Text(body)),
     );
   }
 }

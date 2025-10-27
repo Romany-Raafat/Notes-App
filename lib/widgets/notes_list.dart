@@ -18,7 +18,7 @@ class NotesList extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (context, index) {
         final color = colors[index % colors.length];
-        return Note(color: color);
+        return Note(color: color , title: 'Note Title $index', body: 'This is the body of note $index');
       },
     );
   }
