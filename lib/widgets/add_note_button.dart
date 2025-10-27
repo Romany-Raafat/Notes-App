@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/utils/notification.dart';
 
 class AddNoteButton extends StatelessWidget {
   const AddNoteButton({super.key});
@@ -52,6 +53,7 @@ class AddNoteButton extends StatelessWidget {
               width: double.infinity,
               child: TextButton(
                 onPressed: () {
+                  notification();
                   Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(
