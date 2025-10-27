@@ -3,10 +3,16 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/pages/edit_note_view.dart';
 
 class Note extends StatelessWidget {
-  final String title;
-  final String body;
   final Color color;
-  const Note({super.key, required this.color, required this.title, required this.body});
+  final String title;
+  final String content;
+
+  const Note({
+    super.key,
+    required this.color,
+    required this.title,
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,72 +38,25 @@ class Note extends StatelessWidget {
                   // 🟢 النصوص
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
+                    children: [
                       Text(
-                       title,
-                        style: TextStyle(
+                        title,
+                        style: const TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
-                        body,
+                      const SizedBox(height: 20),
+                      Text(content, style: const TextStyle(fontSize: 24)),
+                      const Text(
+                        'Moh3ands Romany',
                         style: TextStyle(fontSize: 24),
                       ),
-                      Text('Moh3ands Romany', style: TextStyle(fontSize: 24)),
                     ],
                   ),
 
-                  // 🟢 زر 3 نقط (القائمة المنبثقة)
-                  PopupMenuButton<String>(
-                    icon: Icon(Icons.more_vert, size: 35, color: Colors.white),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    onSelected: (value) {
-                      if (value == 'edit') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                 EditNoteView(title: title, body: body),
-                          ),
-                        );
-                      } else if (value == 'delete') {
-                        // هنا تحط كود الحذف
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Note deleted 🗑️"),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
-                    },
-                    itemBuilder: (context) => [
-                      const PopupMenuItem(
-                        value: 'edit',
-                        child: Row(
-                          children: [
-                            Icon(Icons.edit, color: Colors.teal),
-                            SizedBox(width: 10),
-                            Text('Edit'),
-                          ],
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 'delete',
-                        child: Row(
-                          children: [
-                            Icon(Icons.delete, color: Colors.red),
-                            SizedBox(width: 10),
-                            Text('Delete'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  // 🟢 زر 3 نقط
+                  PopMenu(title: title, content: content),
                 ],
               ),
               const SizedBox(height: 20),
@@ -109,6 +68,62 @@ class Note extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PopMenu extends StatelessWidget {
+  const PopMenu({super.key, required this.title, required this.content});
+
+  final String title;
+  final String content;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      icon: const Icon(Icons.more_vert, size: 35, color: Colors.white),
+      color: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      onSelected: (value) {
+        if (value == 'edit') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  EditNoteView(oldTitle: title, oldContent: content),
+            ),
+          );
+        } else if (value == 'delete') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Note deleted 🗑️"),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
+      itemBuilder: (context) => const [
+        PopupMenuItem(
+          value: 'edit',
+          child: Row(
+            children: [
+              Icon(Icons.edit, color: Colors.teal),
+              SizedBox(width: 10),
+              Text('Edit'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'delete',
+          child: Row(
+            children: [
+              Icon(Icons.delete, color: Colors.red),
+              SizedBox(width: 10),
+              Text('Delete'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
