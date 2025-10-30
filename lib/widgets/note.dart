@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/pages/edit_note_view.dart';
+import 'package:notes_app/utils/notification.dart';
 
 class Note extends StatelessWidget {
   final Color color;
@@ -94,12 +95,7 @@ class PopMenu extends StatelessWidget {
             ),
           );
         } else if (value == 'delete') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Note deleted 🗑️"),
-              backgroundColor: Colors.red,
-            ),
-          );
+          notification(title: "Note deleted 🗑️", description: "");
         }
       },
       itemBuilder: (context) => const [
