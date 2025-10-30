@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/const.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:notes_app/pages/notes_view.dart';
 
-void main() async{
+void main() async {
   await Hive.initFlutter();
   await Hive.openBox(kNotesBox);
+  Hive.registerAdapter(NoteModelAdapter());
   runApp(const NotesApp());
 }
 
@@ -15,7 +17,8 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OverlaySupport.global( // 👈 هنا
+    return OverlaySupport.global(
+      // 👈 هنا
       child: MaterialApp(
         theme: ThemeData(brightness: Brightness.dark),
         debugShowCheckedModeBanner: false,
