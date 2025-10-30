@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/utils/notification.dart';
 
-class AddNoteButton extends StatelessWidget {
-  const AddNoteButton({super.key});
+class AddNoteSheet extends StatelessWidget {
+  const AddNoteSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,10 @@ class AddNoteButton extends StatelessWidget {
               width: double.infinity,
               child: TextButton(
                 onPressed: () {
-                  notification();
+                  notification(
+                    title: "Note Added 📝",
+                    description: "Your note has been added successfully!",
+                  );
                   Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(

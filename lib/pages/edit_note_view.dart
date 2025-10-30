@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/utils/notification.dart';
 
 class EditNoteView extends StatefulWidget {
   final String oldTitle;
@@ -33,10 +34,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   }
 
   void saveNote() {
-    // هنا تحفظ التعديل في قاعدة بيانات أو ليست محلية
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text("Note updated ✅")));
+    notification(title: "Note updated ✅" , description: "");
     Navigator.pop(context);
   }
 
