@@ -65,11 +65,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   autovalidateMode = AutovalidateMode.always;
                 });
               }
-              notification(
-                title: "Note Added 📝",
-                description: "Your note has been added successfully!",
-              );
-              Navigator.pop(context);
             },
           ),
         ],
